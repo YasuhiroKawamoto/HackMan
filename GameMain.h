@@ -20,14 +20,6 @@
 #define MAP_W (SCREEN_WIDTH/32)		// ステージ　幅
 #define MAP_H (SCREEN_HEIGHT/32)	// ステージ　高さ
 
-//２次元ベクトル構造体
-typedef struct tag_vector2
-{
-	float x;
-	float y;
-
-}VEC2;
-
 //画像サイズ構造体
 typedef struct tag_grp
 {
@@ -41,16 +33,16 @@ typedef struct tag_grp
 //オブジェクト構造体
 typedef struct tag_object
 {
-	//画像の情報
-	cocos2d::Sprite* sprite;		
-	GRP  grp;	//画像の幅と高さ
-	
-	VEC2 pos;	//座標
-	VEC2 spd;	//速度
+							
+	cocos2d::Sprite* sprite;//画像の情報
+	GRP  grp;				//画像の幅と高さ
 
-	int state;	//状態　２：元気　　
-				//		１：粘液かけられ
-				//		０：死亡
+	cocos2d::Vec2 pos;		//位置
+	cocos2d::Vec2 spd;		//速度
+
+	int state;				//状態　２：元気　　
+							//		１：粘液かけられ
+							//		０：死亡
 
 }OBJECT;			//オブジェクト用
 
