@@ -1,18 +1,19 @@
-#include "HelloWorldScene.h"
+#include "PlayScene.h"
 #include "cocostudio/CocoStudio.h"
 #include "ui/CocosGUI.h"
+#include"Feed.h"
 
 USING_NS_CC;
 
 using namespace cocostudio::timeline;
 
-Scene* HelloWorld::createScene()
+Scene* Play::createScene()
 {
     // 'scene' is an autorelease object
     auto scene = Scene::create();
     
     // 'layer' is an autorelease object
-    auto layer = HelloWorld::create();
+    auto layer = Play::create();
 
     // add layer as a child to scene
     scene->addChild(layer);
@@ -22,7 +23,7 @@ Scene* HelloWorld::createScene()
 }
 
 // on "init" you need to initialize your instance
-bool HelloWorld::init()
+bool Play::init()
 {
     /**  you can create scene with following comment code instead of using csb file.
     // 1. super init first
@@ -84,9 +85,19 @@ bool HelloWorld::init()
         return false;
     }
     
+	this->scheduleUpdate();
+
     auto rootNode = CSLoader::createNode("MainScene.csb");
 
     addChild(rootNode);
 
+
     return true;
+}
+
+void Play::update(float delta)
+{
+	Feed feed;
+
+	feed.Update(this);
 }
