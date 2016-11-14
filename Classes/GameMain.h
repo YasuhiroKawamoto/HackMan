@@ -58,6 +58,7 @@ typedef struct tag_object
 	int state;				//状態　２：元気　　
 							//		１：粘液かけられ
 							//		０：死亡
+	bool isUsed;			// 存在フラグ
 
 }OBJECT;			//オブジェクト用
 
