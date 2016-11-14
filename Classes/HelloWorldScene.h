@@ -19,6 +19,8 @@ public:
 	//ŠÖ”‚ÌéŒ¾
 	void update(float delta) override;
 
+	int direction = 0;
+
 	/*--ƒpƒbƒh‰æ‘œ--*/
 	cocos2d::Sprite* m_sPad;
 	cocos2d::Sprite* m_sPadRight;

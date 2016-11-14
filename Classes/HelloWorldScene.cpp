@@ -3,6 +3,7 @@
 #include "ui/CocosGUI.h"
 #include"HackMan.h"
 #include"Player.h"
+#include "mucus.h"
 
 USING_NS_CC;
 
@@ -251,24 +252,28 @@ void HelloWorld::onKeyPressed(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::
 		/*--ãˆÚ“®--*/
 		m_player[1].ChangeSpd(Vec2(0.0f, PLAYER_SPD));
 		m_player[1].GetSprite()->setRotation(90.0f);
+		direction = UP;
 	}
 	else if (keyCode == EventKeyboard::KeyCode::KEY_DOWN_ARROW)
 	{
 		/*--‰ºˆÚ“®--*/
 		m_player[1].ChangeSpd(Vec2(0.0f, -PLAYER_SPD));
 		m_player[1].GetSprite()->setRotation(-90.0f);
+		direction = DOWN;
 	}
 	else if (keyCode == EventKeyboard::KeyCode::KEY_RIGHT_ARROW)
 	{
 		/*--‰EˆÚ“®--*/
 		m_player[1].ChangeSpd(Vec2(PLAYER_SPD, 0.0f));
 		m_player[1].GetSprite()->setRotation(180.0f);
+		direction = RIGHT;
 	}
 	else if (keyCode == EventKeyboard::KeyCode::KEY_LEFT_ARROW)
 	{
 		/*--¶ˆÚ“®--*/
 		m_player[1].ChangeSpd(Vec2(-PLAYER_SPD, 0.0f));
 		m_player[1].GetSprite()->setRotation(0.0f);
+		direction = LEFT;
 	}
 
 	/*--SPACEƒL[‚ª‰Ÿ‚³‚ê‚½ê‡--*/
@@ -279,8 +284,8 @@ void HelloWorld::onKeyPressed(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::
 			/*--”S‰t‚ª‚ ‚ê‚Î--*/
 
 			//”S‰t‚Ì”­Ë
+			//move_mucus(direction)
 		}
-
 	}
 }
 
