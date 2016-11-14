@@ -13,12 +13,27 @@
 // 定数の定義 ==============================================================
 
 // ゲーム画面
-#define SCREEN_WIDTH  960   // 幅[pixel]
-#define SCREEN_HEIGHT 640   // 高さ[pixel]
+#define SCREEN_WIDTH  (960)				 // 幅[pixel]
+#define SCREEN_HEIGHT (640)				 // 高さ[pixel]
+
+/*--[マップチップサイズ]--*/
+#define MAP_CHIP_W (32)					// マップチップ　幅
+#define MAP_CHIP_H (MAP_CHIP_W)			// マップチップ　高さ (幅と同じ)
 
 /*-----[マップのサイズ]-----*/
-#define MAP_W (SCREEN_WIDTH/32)		// ステージ　幅
-#define MAP_H (SCREEN_HEIGHT/32)	// ステージ　高さ
+#define MAP_W (11)	// ステージ　幅
+#define MAP_H (11)// ステージ　高さ
+
+
+/*--方向--*/
+enum DIRECTION
+{
+	NON = -1, //方向がない場合
+	UP,
+	DOWN,
+	RIGHT,
+	LEFT,
+};
 
 //画像サイズ構造体
 typedef struct tag_grp
