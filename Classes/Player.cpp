@@ -25,6 +25,9 @@ Player::Player()
 	m_player.state = 2;
 
 	m_player.sprite->setScale(MAP_CHIP_H / 32.0f);
+	m_resurrectionTime = 0;
+	m_score = 0;
+	m_shootStock = 0;
 }
 
 
@@ -36,6 +39,16 @@ Player::~Player()
 
 }
 
+
+//＋ーーーーーーーーーーーー
+//｜機　能:プレイヤーの全ての情報を返す
+//｜引　数:なし(void)
+//｜返り値:オブジェクト型の情報(OBJECT)
+//＋ーーーーーーーーーーーー
+OBJECT Player::GetObj()
+{
+	return m_player;
+}
 
 //＋ーーーーーーーーーーーー
 //｜機　能:プレイヤーの画像情報を返す
@@ -75,6 +88,66 @@ cocos2d::Vec2 Player::GetSpd()
 int Player::GetState()
 {
 	return m_player.state;
+}
+
+//＋ーーーーーーーーーーーー
+//｜機　能:プレイヤーの状態を返す
+//｜引　数:なし(void)
+//｜返り値:状態(int)
+//＋ーーーーーーーーーーーー
+bool Player::GetStockShoot()
+{
+	return m_shootStock;
+}
+
+//＋ーーーーーーーーーーーー
+//｜機　能:粘液を発射
+//｜引　数:なし(void)
+//｜返り値:なし(void)
+//＋ーーーーーーーーーーーー
+void Player::Shoot()
+{
+	//粘液残数を０にする
+	m_shootStock = false;
+}
+
+//＋ーーーーーーーーーーーー
+//｜機　能:粘液をストック
+//｜引　数:なし(void)
+//｜返り値:なし(void)
+//＋ーーーーーーーーーーーー
+void Player::StockShoot()
+{
+	if (m_shootStock == false)
+	{
+		m_shootStock = true;
+	}
+}
+
+//＋ーーーーーーーーーーーー
+//｜機　能:粘液を受けた時の処理
+//｜引　数:なし(void)
+//｜返り値:なし(void)
+//＋ーーーーーーーーーーーー
+void Player::Damege()
+{
+	m_player.state--;
+	m_resurrectionTime = 0;
+}
+
+//＋ーーーーーーーーーーーー
+//｜機　能:復活の処理
+//｜引　数:なし(void)
+//｜返り値:なし(void)
+//＋ーーーーーーーーーーーー
+void Player::Resurrection()
+{
+	m_resurrectionTime++;
+
+	if (m_resurrectionTime > 300)
+	{
+		m_player.state = 2;
+	}
 }
 
 //＋ーーーーーーーーーーーー
