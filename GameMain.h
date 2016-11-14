@@ -17,7 +17,7 @@
 #define SCREEN_HEIGHT (640)				 // 高さ[pixel]
 
 /*--[マップチップサイズ]--*/
-#define MAP_CHIP_W (32)					// マップチップ　幅
+#define MAP_CHIP_W (64)					// マップチップ　幅
 #define MAP_CHIP_H (MAP_CHIP_W)			// マップチップ　高さ (幅と同じ)
 
 /*-----[マップのサイズ]-----*/
@@ -58,6 +58,7 @@ typedef struct tag_object
 	int state;				//状態　２：元気　　
 							//		１：粘液かけられ
 							//		０：死亡
+	bool isVisible;			// 存在フラグ
 
 }OBJECT;			//オブジェクト用
 
