@@ -1,4 +1,5 @@
 #include"Feed.h"
+
 // _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
 // 概要:エサクラスのソースファイル
 // 
@@ -14,9 +15,13 @@
 // =>引数:なし
 //============================
 Feed::Feed()
-	:m_pos_x(0), m_pos_y(0), m_grp_w(0), m_grp_h(0)
 {
-
+	for(int i = 0; i < FEED_MAX; i++)
+	{
+		m_feed[i].pos.x = 0, m_feed[i].pos.y = 0, m_feed[i].grp.w = 0, m_feed[i].grp.h = 0;
+		m_feed[i].isUsed = false;
+		m_feed[i].sprite = cocos2d::Sprite::create("feed.png");
+	}
 }	 
 
 //============================
@@ -34,13 +39,23 @@ Feed::~Feed()
 // 
 // =>返り値:なし
 //============================
-void Feed::Update(Play* playObj)
+void Feed::Update(HelloWorld* playObj)
 {
-
+	// 一定時間経過後
 	if (WaitTime())
 	{
-		SetPosition();
-		Generater(playObj);
+		// 使われていないエサを探索
+		for (int i = 0; i < FEED_MAX; i++)
+		{
+			// エサが未使用なら
+			if (m_feed[i].isUsed == false)
+			{
+				SetPosition(i);
+				Generater(playObj, i);
+				m_feed[i].isUsed = true;
+				break;
+			}
+		}
 	}
 }
 //============================
@@ -50,13 +65,11 @@ void Feed::Update(Play* playObj)
 // 
 // =>返り値:なし
 //============================
-void Feed::Generater(Play* playObj)
+void Feed::Generater(HelloWorld* playObj, int id)
 {
-	m_feed_sprite = cocos2d::Sprite::create("heart_tex01.png");
-	m_feed_sprite->setScale(0.1f);
-	m_feed_sprite->setPosition(cocos2d::Vec2(m_pos_x, m_pos_y));
+	m_feed[id].sprite->setPosition(cocos2d::Vec2(m_feed[id].pos.x, m_feed[id].pos.y));
 
-	playObj->addChild(m_feed_sprite);
+	playObj->addChild(m_feed[id].sprite);
 }
 
 //============================
@@ -75,7 +88,6 @@ bool Feed::WaitTime()
 	{
 		cnt = 0;
 		return true;
-
 	}
 	return false;
 }
@@ -87,8 +99,8 @@ bool Feed::WaitTime()
 // 
 // =>返り値:なし
 //============================
-void Feed::SetPosition()
+void Feed::SetPosition(int id)
 {
-	m_pos_x = rand() % 25 *32;
-	m_pos_y = rand() % 20 *32;
+	m_feed[id].pos.x = (rand() % 12 )*64;
+	m_feed[id].pos.y = (rand() % 10 )*64;
 }

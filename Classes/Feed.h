@@ -1,7 +1,9 @@
 #pragma once
 
-#include"PlayScene.h"
+#include"HelloWorldScene.h"
+#include"GameMain.h"
 
+#define FEED_MAX 20
 // _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
 // 概要:エサクラスのヘッダーファイル
 // 
@@ -12,17 +14,13 @@
 class Feed
 {
 private:
-	int m_pos_x;
-	int m_pos_y;
-	int m_grp_w;
-	int m_grp_h;
-	cocos2d::Sprite* m_feed_sprite;
+	OBJECT m_feed[FEED_MAX];
 public:
 	Feed();
 	~Feed();
-	void Update(Play* playObj);
+	void Update(HelloWorld* playObj);
 private:
-	void Generater(Play* playObj);
+	void Generater(HelloWorld* playObj, int id);
 	bool WaitTime();
-	void SetPosition();
+	void SetPosition(int id);
 };
